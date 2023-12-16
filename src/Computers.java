@@ -1,13 +1,13 @@
 public class Computers
 {
     private int assetNum;
-    private String userName;
-    private int loanDate;
-    Computers(int newAssetNum, String newUserName, int newLoanDate)
+    private String model;
+    private boolean type;
+    Computers(int newAssetNum, String newModel, boolean newType)
     {
         assetNum = newAssetNum;
-        userName = newUserName;
-        loanDate = newLoanDate;
+        model = newModel;
+        type = newType;
     }
     // Getter methods
     // TODO make restrictions
@@ -16,13 +16,13 @@ public class Computers
     {
         return assetNum;
     }
-    public String getUserName()
+    public String getModel()
     {
-        return userName;
+        return model;
     }
 
-    public int getLoanDate()
+    public boolean getLoanDate()
     {
-        return loanDate;
+        return type;
     }
 }

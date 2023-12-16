@@ -1,10 +1,10 @@
 import java.io.FileWriter;
 
-public class DataVault
+public class Saving
 {
     // TODO have to find out a way to get wanted datas such as name and assetnumber
 
-    public DataVault()
+    public Saving()
     {
 
     }
