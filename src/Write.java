@@ -1,21 +1,24 @@
 import java.io.FileWriter;
 
-public class Saving
+public class Write extends FileOp
 {
     // TODO have to find out a way to get wanted datas such as name and assetnumber
 
-    public Saving()
+    public Write()
     {
 
     }
 
     public String getData()
     {
-        return
+
     }
 
     public void writeData()
     {
         try (FileWriter fileWriter = new FileWriter(""))
+        {
+
+        }
     }
 }

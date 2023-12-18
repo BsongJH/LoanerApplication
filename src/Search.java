@@ -1,10 +1,6 @@
-public class Search
+public class Search extends FileOp
 {
-    // Overload search to
-    Search()
-    {
-
-    }
+    // TODO use apache to search from a spreadsheet
     Search(int assetNum)
     {
         System.out.println("assetNum");
