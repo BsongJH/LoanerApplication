@@ -2,8 +2,8 @@ import java.io.FileWriter;
 
 public class Write extends FileOp
 {
-    // TODO have to find out a way to get wanted datas such as name and assetnumber
-
+    // TODO Find a way to save on spreadsheet with Class Computer and Loan
+    // Have the function write separate unavailable/available (?)
     public Write()
     {
 

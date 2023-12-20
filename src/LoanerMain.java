@@ -37,26 +37,53 @@ public class LoanerMain
         System.out.println("Track, loan, search");
 
         // Testing, it will be switch to user input
+        // type true = engineering, false = standard
+
         int asset = 1;
         String model = "7440";
-        // type true = engineering, false = standard
         boolean type = true;
+        Computers comp1 = new Computers(1,"7440",false);
+        FileOp handle = new FileOp(); // Passes thinks to write
 
-        Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
-
+        // TODO input will be changed to buttons
         // Add a computer object each time and write on file
         if (input == "add")
         {
             // Creates computer and add to spread sheet
+            // Asset, model, type will be user input param
             Computers newComp = new Computers(asset,model,type);
+            // Writes new computer on spreadsheet
+            handle.write(newComp);
             // TODO spread sheet method or class here. Separate from computer class
 
         }
         else if (input == "loan")
         {
             // TODO use java.time packgae and send it to Loan function
+            Loan newLoan = new Loan("firstName","lastname",comp1);
+            handle(newLoan);
+            // The excel handler can access the information with the example line below
+            // newLoan.getComputer().getLoanDate()
+            // Not just writing, but also The GUI will show availability
+
         }
+        else if (input == "delete")
+        {
+            // Delete parameter will be Computer Object because you cant delete when its loaned
+            handle.delete();
+            // make delete method in FileOp class
+        }
+        else if (input == "return")
+        {
+            // return must be Loan object
+            handle.delete();
+        }
+        else if (input == "search")
+        {
+            Search search1 = new Search(input2);
+        }
+
 
     }
 }
