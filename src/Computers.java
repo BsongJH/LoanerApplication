@@ -1,38 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Computers
 {
-    private int assetNum;
+    private String loanNum;
     private String model;
-    private boolean type;  // True = Engineering, False == Standard
+    private String type;  // True = Engineering, False == Standard
     private boolean availability;
-    Computers(int newAssetNum, String newModel, boolean newType)
+    private List<String> thisObject;
+    Computers(String newLoanNum, String newModel, String newType)
     {
-        assetNum = newAssetNum;
+        loanNum = newLoanNum;
         model = newModel;
         type = newType;
         availability = true;
     }
     // Getter methods
     // TODO make restrictions
-
-    public int getAssetNum()
+    public List<String> inAList()
     {
-        return assetNum;
+        thisObject = new ArrayList<>();
+        thisObject.add(boolToString(availability));
+        thisObject.add(model);
+        thisObject.add(loanNum);
+        thisObject.add(type);
+        return thisObject;
+    }
+
+    public String getAssetNum()
+    {
+        return loanNum;
     }
     public String getModel()
     {
         return model;
     }
 
-    public boolean getLoanDate()
+    public String getLoanDate()
     {
         return type;
     }
 
     // Setter methods
     // TODO make restrictions
-    public void setAssetNum(int assetNum)
+    public void setAssetNum(String assetNum)
     {
-        this.assetNum = assetNum;
+        this.loanNum = assetNum;
     }
 
     public void setModel(String model)
@@ -40,8 +53,14 @@ public class Computers
         this.model = model;
     }
 
-    public void setType(boolean type)
+    public void setType(String type)
     {
         this.type = type;
+    }
+
+    public String boolToString(boolean availability)
+    {
+        if (availability) return "Available";
+        else return "Not Available";
     }
 }

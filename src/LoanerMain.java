@@ -1,4 +1,8 @@
-import java.util.Scanner;
+import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoanerMain
 {
@@ -7,7 +11,12 @@ public class LoanerMain
      */
     public static LoanerMain panelInstance;
     private Loan loan;
-    private Search search;
+    private JFrame frame;
+    private JTree jtree;
+    private JLabel creationTime;
+    private JPanel top;
+    private DefaultMutableTreeNode loanNode;
+    private
 
     // Creating single panel instance
     public static LoanerMain getPanelInstance()
@@ -33,57 +42,87 @@ public class LoanerMain
      */
     public LoanerMain()
     {
-        System.out.println("choose an operation you want to perform");
-        System.out.println("Track, loan, search");
+        FileOperation create = new FileOperation();
+        FileOperation handle = new Access(); // Passes thinks to write
 
-        // Testing, it will be switch to user input
-        // type true = engineering, false = standard
+        loanNode = new DefaultMutableTreeNode();
 
-        int asset = 1;
-        String model = "7440";
-        boolean type = true;
-        Computers comp1 = new Computers(1,"7440",false);
-        FileOp handle = new FileOp(); // Passes thinks to write
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode()
+        JTextField searchBox = new JTextField();
+        searchBox.setBounds(10,10,250,26);
+        searchBox.setBackground(new Color(0xEBEBE3));
 
-        String input = scan.nextLine();
-        // TODO input will be changed to buttons
-        // Add a computer object each time and write on file
-        if (input == "add")
-        {
-            // Creates computer and add to spread sheet
-            // Asset, model, type will be user input param
-            Computers newComp = new Computers(asset,model,type);
-            // Writes new computer on spreadsheet
-            handle.write(newComp);
-            // TODO spread sheet method or class here. Separate from computer class
+        JButton searchBtn = new JButton("Search");
+        searchBtn.setBounds(260,10,110,25);
+        searchBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Search method goes in here
+            }
+        });
 
-        }
-        else if (input == "loan")
-        {
-            // TODO use java.time packgae and send it to Loan function
-            Loan newLoan = new Loan("firstName","lastname",comp1);
-            handle(newLoan);
-            // The excel handler can access the information with the example line below
-            // newLoan.getComputer().getLoanDate()
-            // Not just writing, but also The GUI will show availability
+        JButton addComputer = new JButton("Add Computer");
+        addComputer.setBounds(10, 255, 150, 50);
+        addComputer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Add Computer action
+            }
+        });
 
-        }
-        else if (input == "delete")
-        {
-            // Delete parameter will be Computer Object because you cant delete when its loaned
-            handle.delete();
-            // make delete method in FileOp class
-        }
-        else if (input == "return")
-        {
-            // return must be Loan object
-            handle.delete();
-        }
-        else if (input == "search")
-        {
-            Search search1 = new Search(input2);
-        }
+        JButton loanButton = new JButton("Loan");
+        loanButton.setBounds(160, 255, 150, 50);
+        loanButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Loan action
+            }
+        });
 
+        JButton retrieveButton = new JButton("Return");
+        retrieveButton.setBounds(10, 310, 150, 50);
+        retrieveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Retrieve action
+            }
+        });
+
+        JButton delButton = new JButton("Delete");
+        delButton.setBounds(160, 310, 150, 50);
+        delButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Delete action
+            }
+        });
+
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10,50,300,200);
+        scrollPane.setBackground(new Color(0xEBEBE3));
+        scrollPane.setViewportView(jtree);
+
+
+        frame = new JFrame();
+        frame.setTitle("LoanerApplication");
+        frame.setLayout(null);
+        frame.setResizable(false);
+
+        frame.setPreferredSize(new Dimension(500,550 / 12 * 9));
+        frame.setSize(500, 550 / 12 * 9);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.add(searchBox);
+        frame.add(searchBtn);
+        frame.add(scrollPane);
+        frame.add(addComputer);
+        frame.add(delButton);
+        frame.add(retrieveButton);
+        frame.add(loanButton);
+
+        frame.setVisible(true);
 
     }
 }

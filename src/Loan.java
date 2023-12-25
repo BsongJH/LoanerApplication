@@ -1,26 +1,31 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Loan
 {
     // TODO oan class will have the date and name attribute working similarly like the computer class
-    private LocalDate date;
-    private String firstName;
-    private String lastName;
-    private Computers computer;
+    protected LocalDate date;
+    protected String firstName;
+    protected String lastName;
 
-    public Loan(String newFirstName, String newLastName, Computers newComputer)
+    public Loan(String newFirstName, String newLastName)
     {
         date = LocalDate.now();
         firstName = newFirstName;
         lastName = newLastName;
-        computer = newComputer;
+    }
+
+    public List<String> inAList()
+    {
+        List<String> newLine = new ArrayList<>();
+        newLine.add(date.toString());
+        newLine.add(firstName);
+        newLine.add(lastName);
+        return newLine;
     }
 
     // TODO make restriction when accessing information
-    public Computers getComputer()
-    {
-        return computer;
-    }
 
     public String getLastName()
     {
@@ -37,10 +42,6 @@ public class Loan
         return firstName;
     }
     // TODO make restrictions when accessing and changing
-    public void setComputer(Computers computer)
-    {
-        this.computer = computer;
-    }
 
     public void setDate(LocalDate date)
     {
