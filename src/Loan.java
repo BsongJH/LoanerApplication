@@ -6,40 +6,33 @@ public class Loan
 {
     // TODO oan class will have the date and name attribute working similarly like the computer class
     protected LocalDate date;
-    protected String firstName;
-    protected String lastName;
+    protected String name;
 
-    public Loan(String newFirstName, String newLastName)
+    public Loan(String newName)
     {
+        // This attributes will be send via compObj.getNum or something by clicking the desired computer
         date = LocalDate.now();
-        firstName = newFirstName;
-        lastName = newLastName;
+        name = newName;
     }
 
     public List<String> inAList()
     {
         List<String> newLine = new ArrayList<>();
         newLine.add(date.toString());
-        newLine.add(firstName);
-        newLine.add(lastName);
+        newLine.add(name);
         return newLine;
     }
 
     // TODO make restriction when accessing information
 
-    public String getLastName()
+    public String getName()
     {
-        return lastName;
+        return name;
     }
 
     public LocalDate getDate()
     {
         return date;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
     }
     // TODO make restrictions when accessing and changing
 
@@ -48,13 +41,9 @@ public class Loan
         this.date = date;
     }
 
-    public void setFirstName(String firstName)
+    public void setName(String newName)
     {
-        this.firstName = firstName;
+        this.name = newName;
     }
 
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
 }

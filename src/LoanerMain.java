@@ -3,21 +3,18 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoanerMain
 {
-    /* TODO Main 화면은 버튼 세개 (Track, Loan, Search)가 있고
-        버튼을
-     */
     public static LoanerMain panelInstance;
     private Loan loan;
     private JFrame frame;
-    private JTree jtree;
     private JLabel creationTime;
     private JPanel top;
-    private DefaultMutableTreeNode loanNode;
-    private
-
+    private JTable table;
+    private List<Computers> computersList = new ArrayList<>();
     // Creating single panel instance
     public static LoanerMain getPanelInstance()
     {
@@ -33,21 +30,17 @@ public class LoanerMain
         }
         return panelInstance;
     }
-    /*
-        원하는 방법 (하나씩 구현해보자.
-        스크롤 패널에 컴퓨터 리스트를 보여준다. 컴퓨터 리스트에 론 가능 불가능 이 보여진다 -- GUI
-        유저는 가능/불가능한 컴퓨터를 클릭한다/하이라이트 한다. 론 버튼을 누른다. -- GUI
-        작은 창이 뜨는데 거기에 이름과 날짜를 기입하고 확인을 누른다. -- Function
-        기입된 정보는 스프레드 시트에 저장된다 --> 컴퓨터 목록은 이미 저장된 상태이기 때문에 옆에 다른칸에 새롭게 기입된다. -- Function
-     */
+
     public LoanerMain()
     {
-        FileOperation create = new FileOperation();
-        FileOperation handle = new Access(); // Passes thinks to write
 
-        loanNode = new DefaultMutableTreeNode();
+        //FileOperation create = new FileOperation();
+        //FileOperation handle = new Access(); // Passes thinks to write
 
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode()
+
+        MyTableModel myTableModel = new MyTableModel();
+        table = new JTable(myTableModel);
+
         JTextField searchBox = new JTextField();
         searchBox.setBounds(10,10,250,26);
         searchBox.setBackground(new Color(0xEBEBE3));
@@ -67,6 +60,8 @@ public class LoanerMain
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Add Computer action
+                AddComputerUI addComputerUI = new AddComputerUI(myTableModel, computersList);
+                System.out.println(computersList.get(0).toString());
             }
         });
 
@@ -98,18 +93,19 @@ public class LoanerMain
         });
 
 
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10,50,300,200);
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(10,50,400,200);
         scrollPane.setBackground(new Color(0xEBEBE3));
-        scrollPane.setViewportView(jtree);
+        scrollPane.setViewportView(table);
 
 
         frame = new JFrame();
         frame.setTitle("LoanerApplication");
         frame.setLayout(null);
         frame.setResizable(false);
+        frame.pack();
 
-        frame.setPreferredSize(new Dimension(500,550 / 12 * 9));
+        //frame.setPreferredSize(new Dimension(500,550 / 12 * 9));
         frame.setSize(500, 550 / 12 * 9);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -5,10 +5,10 @@ public class Computers
 {
     private String loanNum;
     private String model;
-    private String type;  // True = Engineering, False == Standard
+    private boolean type;  // True = Engineering, False == Standard
     private boolean availability;
-    private List<String> thisObject;
-    Computers(String newLoanNum, String newModel, String newType)
+    private List<String> thisComp;
+    Computers(String newLoanNum, String newModel, boolean newType)
     {
         loanNum = newLoanNum;
         model = newModel;
@@ -19,12 +19,13 @@ public class Computers
     // TODO make restrictions
     public List<String> inAList()
     {
-        thisObject = new ArrayList<>();
-        thisObject.add(boolToString(availability));
-        thisObject.add(model);
-        thisObject.add(loanNum);
-        thisObject.add(type);
-        return thisObject;
+        thisComp = new ArrayList<>();
+        thisComp.add(availableBoolToString(availability));
+        thisComp.add(model);
+        thisComp.add(loanNum);
+        thisComp.add(" ");
+        thisComp.add(" ");
+        return thisComp;
     }
 
     public String getAssetNum()
@@ -36,7 +37,7 @@ public class Computers
         return model;
     }
 
-    public String getLoanDate()
+    public boolean getLoanDate()
     {
         return type;
     }
@@ -53,12 +54,17 @@ public class Computers
         this.model = model;
     }
 
-    public void setType(String type)
+    public void setType(boolean type)
     {
         this.type = type;
     }
 
-    public String boolToString(boolean availability)
+    public String toString()
+    {
+        return loanNum + model + type;
+    }
+
+    public String availableBoolToString(boolean availability)
     {
         if (availability) return "Available";
         else return "Not Available";
