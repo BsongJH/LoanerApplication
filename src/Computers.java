@@ -25,6 +25,8 @@ public class Computers
         thisComp.add(loanNum);
         thisComp.add(" ");
         thisComp.add(" ");
+        if (type) thisComp.add("Eng");
+        else thisComp.add("Std");
         return thisComp;
     }
 

@@ -29,11 +29,11 @@ public class AddComputerUI
         modelLabel.setBounds(10,10,100,50);
         numLabel.setBounds(10, 70, 100,50);
 
-        inputModel = new JTextField("    Ex) Dell 7440");
+        inputModel = new JTextField("Ex) Dell 7440");
         inputModel.setBounds(150,10,200, 50);
         inputModel.setBackground(new Color(0xEBEBE3));
 
-        inputNumber = new JTextField("   Ex) \"01\"");
+        inputNumber = new JTextField("Ex) \"01\"");
         inputNumber.setBounds(150,70,200,50);
         inputNumber.setBackground(new Color(0xEBEBE3));
 
@@ -59,14 +59,24 @@ public class AddComputerUI
             public void actionPerformed(ActionEvent e)
             {
                 // Check user if all the text fields are inputted.
-                if (!inputModel.getText().isEmpty() || !inputNumber.getText().isEmpty())
+                if (inputModel.getText().equalsIgnoreCase("Ex) Dell 7440")
+                        || inputModel.getText().isEmpty())
+                {
+                    // error message here
+                    display("Please enter the model again!");
+                }
+                else if (inputNumber.getText().equalsIgnoreCase("Ex) \"01\"")
+                        || inputNumber.getText().isEmpty())
+                {
+                    // error message here
+                    display("Please enter the number again!");
+                }
+                else if (!inputModel.getText().isEmpty() || !inputNumber.getText().isEmpty())
                 {
                     if (engineerButton.isSelected())
                     {
                         addedComputer = new Computers(inputNumber.getText(), inputModel.getText(), true);
                         computersList.add(addedComputer);
-                        System.out.println("eng");
-                        System.out.println(addedComputer.toString());
                         myTableModel.addComputer(addedComputer);
 
                     }
@@ -74,17 +84,17 @@ public class AddComputerUI
                     {
                         addedComputer = new Computers(inputNumber.getText(),inputModel.getText(),false);
                         computersList.add(addedComputer);
-                        System.out.println("stand");
-                        System.out.println(addedComputer.toString());
                         myTableModel.addComputer(addedComputer);
                     }
-                    System.out.println("check");
+                    // It closes when the computer is added.
+                    addCompFrame.dispose();
                 }
                 else
                 {
+                    // TODO insert error message here
                     System.out.println("nope");
                 }
-                addCompFrame.dispose();
+
             }
         });
 
@@ -118,5 +128,13 @@ public class AddComputerUI
         System.out.println("called");
         return addedComputer;
     }
+    private void errorMsg(String errorMsg)
+    {
+        JOptionPane.showMessageDialog(null, errorMsg, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
+    private void display(String message)
+    {
+        JOptionPane.showMessageDialog(null, message, "Analysis", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

@@ -7,22 +7,29 @@ public class MyTableModel extends AbstractTableModel
 {
     // Change to 2d Array instead of array list
     private final ArrayList<String> columnNames = new ArrayList<String>(
-            Arrays.asList("Available", "Model", "Number", "Name", "Date")
+            Arrays.asList("Available", "Model", "Number", "Name", "Date","Type")
     );
 
-    private List<List<String>> data;
+    private List<List<String>> data = new ArrayList<>();
 
+    /*
+        The constructor assigns the headline.
+        data will have the list of computers that user has added
+        and will be shown on the table.
+     */
     public MyTableModel()
     {
-        List<String> test = new ArrayList<>(Arrays.asList("test","test","test","test","test"));
-        data = new ArrayList<>();
+        List<String> test = new ArrayList<>(Arrays.asList("test","test","test","test","test","test"));
         data.add(test);
     }
 
+    /*
+        This function adds a new computer to the table
+     */
     public void addComputer(Computers newComputer)
     {
-        data = new ArrayList<>();
         data.add(newComputer.inAList());
+        System.out.println("In MyTableModel Class" + data);
         fireTableDataChanged();
     }
     /*
@@ -51,5 +58,10 @@ public class MyTableModel extends AbstractTableModel
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return data.get(rowIndex).get(columnIndex);
+    }
+
+    public void setValueAt(String aValue, int rowIndex, int columnIndex)
+    {
+        data.get(rowIndex).set(columnIndex, aValue);
     }
 }

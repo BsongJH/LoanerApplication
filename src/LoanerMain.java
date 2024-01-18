@@ -15,6 +15,7 @@ public class LoanerMain
     private JPanel top;
     private JTable table;
     private List<Computers> computersList = new ArrayList<>();
+    private MyTableModel myTableModel = new MyTableModel();
     // Creating single panel instance
     public static LoanerMain getPanelInstance()
     {
@@ -34,11 +35,7 @@ public class LoanerMain
     public LoanerMain()
     {
 
-        //FileOperation create = new FileOperation();
-        //FileOperation handle = new Access(); // Passes thinks to write
-
-
-        MyTableModel myTableModel = new MyTableModel();
+        //MyTableModel myTableModel = new MyTableModel();
         table = new JTable(myTableModel);
 
         JTextField searchBox = new JTextField();
@@ -61,7 +58,7 @@ public class LoanerMain
             public void actionPerformed(ActionEvent e) {
                 // Add Computer action
                 AddComputerUI addComputerUI = new AddComputerUI(myTableModel, computersList);
-                System.out.println(computersList.get(0).toString());
+                System.out.println(computersList);
             }
         });
 
@@ -70,7 +67,9 @@ public class LoanerMain
         loanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Loan action
+                // Loan
+                // Check if it is selected or not
+                LoanUI loanUI = new LoanUI(myTableModel, table.getSelectedRow());
             }
         });
 
@@ -89,6 +88,7 @@ public class LoanerMain
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Delete action
+
             }
         });
 
