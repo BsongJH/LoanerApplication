@@ -42,19 +42,12 @@ public class LoanUI
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                System.out.println(selectedRow);
-                System.out.println(inputDate.getText());
-                System.out.println(inputName.getText());
                 // Check if the input value, see if it is empty
                 if(!inputName.getText().isEmpty() && !inputDate.getText().isEmpty())
                 {
                     myTableModel.setValueAt(inputName.getText(),selectedRow,3);
                     myTableModel.setValueAt(inputDate.getText(),selectedRow,4);
                     loanUIFrame.dispose();
-                }
-                else
-                {
-                    System.out.println("nope");
                 }
             }
         });

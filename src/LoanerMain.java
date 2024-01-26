@@ -9,7 +9,6 @@ import java.util.List;
 public class LoanerMain
 {
     public static LoanerMain panelInstance;
-    private Loan loan;
     private JFrame frame;
     private JLabel creationTime;
     private JPanel top;
@@ -68,17 +67,33 @@ public class LoanerMain
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Loan
-                // Check if it is selected or not
-                LoanUI loanUI = new LoanUI(myTableModel, table.getSelectedRow());
+                // TODO Check if it is selected or not
+                if (table.getSelectedRow() != -1)
+                {
+                    LoanUI loanUI = new LoanUI(myTableModel, table.getSelectedRow());
+                }
+                else
+                {
+
+                }
             }
         });
 
-        JButton retrieveButton = new JButton("Return");
+        JButton retrieveButton = new JButton("Retrieve");
         retrieveButton.setBounds(10, 310, 150, 50);
         retrieveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Retrieve action
+                if (table.getSelectedRow() != -1)
+                {
+                    Retrieve retrieve = new Retrieve(myTableModel, table.getSelectedRow());
+                }
+                else
+                {
+
+                }
+
             }
         });
 
@@ -88,7 +103,7 @@ public class LoanerMain
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Delete action
-
+                DeleteComputer deleteComputer = new DeleteComputer(myTableModel, table.getSelectedRow());
             }
         });
 

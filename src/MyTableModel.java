@@ -64,4 +64,8 @@ public class MyTableModel extends AbstractTableModel
     {
         data.get(rowIndex).set(columnIndex, aValue);
     }
+    public void deleteRow(int rowIndex)
+    {
+
+    }
 }

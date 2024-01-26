@@ -10,20 +10,9 @@ public class Loan
 
     public Loan(String newName)
     {
-        // This attributes will be send via compObj.getNum or something by clicking the desired computer
         date = LocalDate.now();
         name = newName;
     }
-
-    public List<String> inAList()
-    {
-        List<String> newLine = new ArrayList<>();
-        newLine.add(date.toString());
-        newLine.add(name);
-        return newLine;
-    }
-
-    // TODO make restriction when accessing information
 
     public String getName()
     {
@@ -34,7 +23,6 @@ public class Loan
     {
         return date;
     }
-    // TODO make restrictions when accessing and changing
 
     public void setDate(LocalDate date)
     {
