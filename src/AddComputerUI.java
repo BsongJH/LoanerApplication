@@ -91,8 +91,7 @@ public class AddComputerUI
                 }
                 else
                 {
-                    // TODO insert error message here
-                    System.out.println("nope");
+                    errorMsg("Please Try Again!!");
                 }
 
             }
@@ -123,11 +122,6 @@ public class AddComputerUI
         addCompFrame.setLocationRelativeTo(null);
     }
 
-    public Computers getComputer()
-    {
-        System.out.println("called");
-        return addedComputer;
-    }
     private void errorMsg(String errorMsg)
     {
         JOptionPane.showMessageDialog(null, errorMsg, "Error", JOptionPane.ERROR_MESSAGE);

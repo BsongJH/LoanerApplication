@@ -10,8 +10,6 @@ public class LoanerMain
 {
     public static LoanerMain panelInstance;
     private JFrame frame;
-    private JLabel creationTime;
-    private JPanel top;
     private JTable table;
     private List<Computers> computersList = new ArrayList<>();
     private MyTableModel myTableModel = new MyTableModel();
@@ -33,40 +31,36 @@ public class LoanerMain
 
     public LoanerMain()
     {
-
-        //MyTableModel myTableModel = new MyTableModel();
         table = new JTable(myTableModel);
 
         JTextField searchBox = new JTextField();
-        searchBox.setBounds(10,10,250,26);
-        searchBox.setBackground(new Color(0xEBEBE3));
+        searchBox.setBounds(190,215,150,51);
+        searchBox.setBackground(new Color(0xFFFFFF));
 
         JButton searchBtn = new JButton("Search");
-        searchBtn.setBounds(260,10,110,25);
+        searchBtn.setBounds(340,215,150,50);
         searchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Search method goes in here
+                // TODO
             }
         });
 
         JButton addComputer = new JButton("Add Computer");
-        addComputer.setBounds(10, 255, 150, 50);
+        addComputer.setBounds(190, 265, 150, 50);
         addComputer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add Computer action
                 AddComputerUI addComputerUI = new AddComputerUI(myTableModel, computersList);
-                System.out.println(computersList);
             }
         });
 
         JButton loanButton = new JButton("Loan");
-        loanButton.setBounds(160, 255, 150, 50);
+        loanButton.setBounds(340, 265, 150, 50);
         loanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Loan
                 // TODO Check if it is selected or not
                 if (table.getSelectedRow() != -1)
                 {
@@ -74,42 +68,53 @@ public class LoanerMain
                 }
                 else
                 {
-
+                    display("Please Select The Computer first!!");
                 }
             }
         });
 
         JButton retrieveButton = new JButton("Retrieve");
-        retrieveButton.setBounds(10, 310, 150, 50);
+        retrieveButton.setBounds(190, 315, 150, 50);
         retrieveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Retrieve action
-                if (table.getSelectedRow() != -1)
+                if (table.getSelectedRow() != -1 && !myTableModel.getValueAt(table.getSelectedRow(),0).equals("Available"))
                 {
                     Retrieve retrieve = new Retrieve(myTableModel, table.getSelectedRow());
                 }
+                else if (myTableModel.getValueAt(table.getSelectedRow(), 0).equals("Available"))
+                {
+                    display("The Computer is Available!!");
+                }
                 else
                 {
-
+                    display("Please Select The Computer First!!");
                 }
 
             }
         });
 
         JButton delButton = new JButton("Delete");
-        delButton.setBounds(160, 310, 150, 50);
+        delButton.setBounds(340, 315, 150, 50);
         delButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Delete action
-                DeleteComputer deleteComputer = new DeleteComputer(myTableModel, table.getSelectedRow());
+                if (table.getSelectedRow() != -1)
+                {
+                    DeleteComputer deleteComputer = new DeleteComputer(myTableModel, table.getSelectedRow());
+                }
+                else
+                {
+                    display("Please Select The Computer First!!");
+                }
             }
         });
 
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(10,50,400,200);
+        scrollPane.setBounds(10,10,480,200);
         scrollPane.setBackground(new Color(0xEBEBE3));
         scrollPane.setViewportView(table);
 
@@ -121,7 +126,7 @@ public class LoanerMain
         frame.pack();
 
         //frame.setPreferredSize(new Dimension(500,550 / 12 * 9));
-        frame.setSize(500, 550 / 12 * 9);
+        frame.setSize(500, 400);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -134,6 +139,10 @@ public class LoanerMain
         frame.add(loanButton);
 
         frame.setVisible(true);
+    }
 
+    private void display(String message)
+    {
+        JOptionPane.showMessageDialog(null, message, "Analysis", JOptionPane.INFORMATION_MESSAGE);
     }
 }

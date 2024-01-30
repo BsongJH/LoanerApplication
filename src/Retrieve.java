@@ -16,8 +16,9 @@ public class Retrieve
         if (response == JOptionPane.YES_OPTION)
         {
             // Deletes Name and Date
-            myTableModel.setValueAt("",selectedRow,3);
-            myTableModel.setValueAt("",selectedRow,4);
+            myTableModel.setValueAt("Available",selectedRow,0);
+            myTableModel.setValueAt(" ",selectedRow,3);
+            myTableModel.setValueAt(" ",selectedRow,4);
         }
 
     }

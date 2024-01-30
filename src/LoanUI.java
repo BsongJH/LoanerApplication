@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.util.List;
 
 public class LoanUI
 {
@@ -21,6 +20,7 @@ public class LoanUI
     {
         addFrames();
 
+        now = LocalDate.now();
         nameLabel = new JLabel("User Name");
         dateLabel = new JLabel("Today's Date");
 
@@ -31,7 +31,7 @@ public class LoanUI
         inputName.setBounds(100,10,200,50);
         inputName.setBackground(new Color(0xEBEBE3));
 
-        inputDate = new JTextField("Date");
+        inputDate = new JTextField(now.toString());
         inputDate.setBounds(100,70,200,50);
         inputDate.setBackground(new Color(0xEBEBE3));
 
@@ -45,6 +45,8 @@ public class LoanUI
                 // Check if the input value, see if it is empty
                 if(!inputName.getText().isEmpty() && !inputDate.getText().isEmpty())
                 {
+                    System.out.println(now);
+                    myTableModel.setValueAt("Not Available",selectedRow,0);
                     myTableModel.setValueAt(inputName.getText(),selectedRow,3);
                     myTableModel.setValueAt(inputDate.getText(),selectedRow,4);
                     loanUIFrame.dispose();

@@ -15,8 +15,9 @@ public class Computers
         type = newType;
         availability = true;
     }
-    // Getter methods
-    // TODO make restrictions
+
+
+    // inAList() Method returns and ArrayList of computer attribute to be added on to the UI table
     public List<String> inAList()
     {
         thisComp = new ArrayList<>();

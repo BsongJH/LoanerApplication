@@ -13,33 +13,14 @@ public class MyTableModel extends AbstractTableModel
     private List<List<String>> data = new ArrayList<>();
 
     /*
-        The constructor assigns the headline.
-        data will have the list of computers that user has added
-        and will be shown on the table.
-     */
-    public MyTableModel()
-    {
-        List<String> test = new ArrayList<>(Arrays.asList("test","test","test","test","test","test"));
-        data.add(test);
-    }
-
-    /*
         This function adds a new computer to the table
      */
     public void addComputer(Computers newComputer)
     {
         data.add(newComputer.inAList());
-        System.out.println("In MyTableModel Class" + data);
         fireTableDataChanged();
     }
-    /*
-    public void addLoan(Loan loan)
-    {
 
-
-    }
-
-     */
     public String getColumnName(int column) {
         return columnNames.get(column);
     }
@@ -48,7 +29,6 @@ public class MyTableModel extends AbstractTableModel
     public int getRowCount() {
         return data.size();
     }
-
 
     @Override
     public int getColumnCount() {
@@ -66,6 +46,9 @@ public class MyTableModel extends AbstractTableModel
     }
     public void deleteRow(int rowIndex)
     {
-
+        if (rowIndex >= 0)
+        {
+            data.remove(rowIndex);
+        }
     }
 }
