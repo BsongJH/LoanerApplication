@@ -1,12 +1,26 @@
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
 
 public class ExcelFileDAOImpl implements ExcelFileDAO
 {
+    LocalDate now;
     @Override
     public void writeData(String filePath, List<String[]> data)
     {
+        now = LocalDate.now();
         try (Workbook workbook = new XSSFWorkbook()) {
-            Sheet sheet = workbook.createSheet("Data");
+            Sheet sheet = workbook.createSheet("Loaner1");
 
             int rowNum = 0;
             for (String[] rowData : data) {
@@ -45,5 +59,10 @@ public class ExcelFileDAOImpl implements ExcelFileDAO
             e.printStackTrace();
         }
         return dataList;
+    }
+
+    public List<String> datas(String datass)
+    {
+        return null;
     }
 }
